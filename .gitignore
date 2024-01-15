@@ -20,3 +20,5 @@ docs/source/.vs
 
 # IntelliJ / PyCharm IDE
 .idea/
+
+.git
