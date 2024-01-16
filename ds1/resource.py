@@ -2,9 +2,9 @@ from ds1.client import Client
 
 
 class Resource:
-    def __init__(self, base_url, client: Client = None):
+    def __init__(self, base_url, client):
         self.base_url = base_url
-        self.client = client
+        self.client = Client
 
     def all(self, data, **kwargs):
         return self.get_url(self.base_url, data, **kwargs)

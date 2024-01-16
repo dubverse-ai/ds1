@@ -1,10 +1,12 @@
 import requests
+from ds1.client import Client
 from ds1.constants.url import URL
 from ds1.exceptions import DubverseError
+from ds1.resource import Resource
 
 
-class User:
-    def __init__(self, id, auth_token):
+class Users(Resource):
+    def __init__(self):
         """
         Initialize Users object with authentication token.
 
@@ -13,21 +15,7 @@ class User:
         """
         self.name = "Webapp Client"
         self.base_url = URL.BASE_URL + URL.VERSION + URL.USER_URL
-        self.token = auth_token
-        self.request_header = self.get_headers_for_request()
         self.user = self._get_user(id)
-
-    def get_headers_for_request(self):
-        """
-        Generate headers for API requests.
-
-        Returns:
-        - dict: Request headers.
-        """
-        return {
-            "Authorization": f"Bearer {self.token}",
-            "accept": "application/json",
-        }
 
     def _get_user(self, user_id):
         """
@@ -46,11 +34,13 @@ class User:
         if not user_id:
             raise ValueError("User ID not provided")
 
+        print(self.client.base_url)
+
         request_url = f"{self.base_url}/{user_id}"
 
-        try:
-            response = requests.get(request_url, headers=self.request_header)
-            response.raise_for_status()
-            return response.json()
-        except requests.exceptions.RequestException as e:
-            raise DubverseError(f"Error in API request: {str(e)}")
+        # try:
+        #     response = requests.get(request_url, headers=self.request_header)
+        #     response.raise_for_status()
+        #     return response.json()
+        # except requests.exceptions.RequestException as e:
+        #     raise DubverseError(f"Error in API request: {str(e)}")
