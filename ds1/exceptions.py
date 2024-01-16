@@ -1,0 +1,2 @@
+class DubverseError(Exception):
+    pass

@@ -1,4 +1,6 @@
 class URL(object):
-    BASE_URL = "http://locahost:8000"
-    VERSION = "/v3"
-    USER_URL = "/api" + VERSION + "/user"
+    BASE_URL = "http://localhost:8000"
+    VERSION = "/api/v3"
+    USER_URL = "/user"
+    SUBSCRIPION_URL = "/subscription"
+    AUTH_URL = "/auth/login"
