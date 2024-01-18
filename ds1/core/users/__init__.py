@@ -1,21 +1,11 @@
-import requests
-from ds1.client import Client
-from ds1.constants.url import URL
-from ds1.exceptions import DubverseError
-from ds1.resource import Resource
-
+from ...constants.url import URL
+from ...resource import Resource
 
 class Users(Resource):
-    def __init__(self):
-        """
-        Initialize Users object with authentication token.
-
-        Parameters:
-        - auth_token (str): Authentication token for API requests.
-        """
+    def __init__(self, client):
+        # super().__init__(client)
         self.name = "Webapp Client"
         self.base_url = URL.BASE_URL + URL.VERSION + URL.USER_URL
-        self.user = self._get_user(id)
 
     def _get_user(self, user_id):
         """

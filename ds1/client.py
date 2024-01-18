@@ -1,9 +1,10 @@
 import json
+
 import requests
 
-from ds1.constants.url import URL
-from ds1.core.auth import Auth
-from ds1.exceptions import DubverseError
+from .constants.url import URL
+from .core.auth import Auth
+from .exceptions import DubverseError
 
 
 class Client:
@@ -40,7 +41,7 @@ class Client:
         except requests.exceptions.RequestException as e:
             raise DubverseError(f"Error Authorizing Client: {str(e)}")
 
-    def get(self, path, params, **options):
+    def get(self, path, params=None, **options):
         return self.request("get", path, params=params, **options)
 
     def post(self, path, data, **options):
