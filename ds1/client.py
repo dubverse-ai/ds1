@@ -2,6 +2,8 @@ import json
 
 import requests
 
+from .core.user import User
+
 from .constants.url import URL
 from .core.auth import Auth
 from .exceptions import DubverseError
@@ -16,6 +18,7 @@ class Client:
         self.base_url = self._set_base_url()
         self.auth_token = Auth(email, password).get_auth_token()
         self.session = self._get_session()
+        self.user = User(client=self)
 
     def _set_base_url(self, **options):
         return options.get("base_url", URL.BASE_URL + URL.VERSION)

@@ -3,4 +3,6 @@ class URL(object):
     VERSION = "/api/v3"
     USER_URL = "/user"
     SUBSCRIPION_URL = "/subscription"
+    CONFIG_URL = "/config"
+    METADATA_URL = "/metadata"
     AUTH_URL = "/auth/login"

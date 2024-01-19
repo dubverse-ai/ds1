@@ -1,4 +1,6 @@
 from .client import Client
-from .core.users import Users
+from .core.user import User
+from .core.subscription import Subscripton
+from .core.config import Config
 
-__all__ = ["Client", "Users"]
+__all__ = ["Client", "User", "Subscripton", "Config"]
