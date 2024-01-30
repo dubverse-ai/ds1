@@ -22,3 +22,5 @@ docs/source/.vs
 .idea/
 
 .git
+
+notebook.ipynb
