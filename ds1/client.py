@@ -2,11 +2,11 @@ import json
 
 import requests
 
-from .core.user import User
+from ds1.core.user import User
 
-from .constants.url import URL
-from .core.auth import Auth
-from .exceptions import DubverseError
+from ds1.constants.url import URL
+from ds1.core.auth import Auth
+from ds1.exceptions import DubverseError
 
 
 class Client:

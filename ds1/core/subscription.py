@@ -1,5 +1,5 @@
-from ..constants.url import URL
-from ..resource import Resource
+from ds1.constants.url import URL
+from ds1.resource import Resource
 
 
 class Subscripton(Resource):
@@ -7,4 +7,3 @@ class Subscripton(Resource):
         super().__init__(client=client)
         self.name = "Dubverse Subscription"
         self.base_url = URL.SUBSCRIPION_URL
-

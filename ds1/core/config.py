@@ -1,5 +1,5 @@
-from ..constants.url import URL
-from ..resource import Resource
+from ds1.constants.url import URL
+from ds1.resource import Resource
 
 
 class Config(Resource):
