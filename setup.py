@@ -2,13 +2,11 @@ from setuptools import setup, find_packages
 
 setup(
     name="ds1",
-    version="0.1.0",
+    version="0.1.1",
     author="peritissimus",
     description="Dubverse SDK for Python",
     packages=find_packages(),  # Automatically discover and include all packages
-    install_requires=[
-        "requests>=2.0"
-    ],
+    install_requires=["requests>=2.0"],
     python_requires=">=3.6",
     classifiers=[
         "Development Status :: 1 - Planning",
