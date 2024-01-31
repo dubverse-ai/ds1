@@ -16,7 +16,7 @@ class Client:
         self.email = email
         self.password = password
         self.base_url = self._set_base_url()
-        self.auth_token = Auth(email, password).get_auth_token()
+        self.auth_token = Auth().get_auth_token(email, password)
         self.session = self._get_session()
         self.user = User(client=self)
 
