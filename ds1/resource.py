@@ -2,8 +2,8 @@ class Resource(object):
     def __init__(self, client):
         self.client = client
 
-    def all(self, data, **kwargs):
-        return self.get_url(self.base_url, data, **kwargs)
+    def all(self, **kwargs):
+        return self.get_url(self.base_url, **kwargs)
     
     def fetch(self, id, **kwargs):
         url = "{}/{}".format(self.base_url, id)

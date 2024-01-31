@@ -1,9 +1,11 @@
 class URL(object):
-    BASE_URL = "https://poopy.dubverse.ai"
+    BASE_URL = "http://stage.dubverse.ai"
     ADMIN_PREFIX = "/red"
     VERSION = "/api/v3"
     USER_URL = "/user"
     SUBSCRIPION_URL = "/subscription"
     CONFIG_URL = "/config"
+    PLAN_URL = "/plan"
     METADATA_URL = "/metadata"
+    ACCESSLEVEL_URL = "/accesslevel"
     AUTH_URL = "/auth/login"

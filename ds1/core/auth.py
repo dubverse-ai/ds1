@@ -47,3 +47,4 @@ class Auth:
             return response.json()
         except Exception as e:
             raise DubverseError(f"Verification Failed: {e}")
+
