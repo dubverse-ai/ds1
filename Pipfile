@@ -5,6 +5,7 @@ name = "pypi"
 
 [packages]
 requests = "*"
+cachetools = "*"
 
 [dev-packages]
 ipython = "*"

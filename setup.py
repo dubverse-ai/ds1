@@ -6,7 +6,7 @@ setup(
     author="peritissimus",
     description="Dubverse SDK for Python",
     packages=find_packages(),  # Automatically discover and include all packages
-    install_requires=["requests>=2.0"],
+    install_requires=["requests>=2.0", "cachetools"],
     python_requires=">=3.6",
     classifiers=[
         "Development Status :: 1 - Planning",
