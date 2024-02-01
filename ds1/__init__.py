@@ -4,7 +4,7 @@ from ds1.core.subscription import Subscription
 from ds1.core.config import Config
 from ds1.core.auth import Auth
 from ds1.core.plan import Plan
-from ds1.core.access_level import AccessLevel
+from ds1.core.access_level import Accesslevel
 from ds1.core.metadata import Metadata
 
 __all__ = [
