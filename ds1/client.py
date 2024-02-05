@@ -1,11 +1,11 @@
 import json
 
 import requests
-
-from ds1.core.user import User
+from cachetools import TTLCache
 
 from ds1.constants.url import URL
 from ds1.core.auth import Auth
+from ds1.core.user import User
 from ds1.exceptions import DubverseError
 
 
@@ -19,6 +19,7 @@ class Client:
         self.auth_token = Auth().get_auth_token(email, password)
         self.session = self._get_session()
         self.user = User(client=self)
+        self.cache = TTLCache(maxsize=1, ttl=86400)  # 86400 seconds = 1 day
 
     def _set_base_url(self, **options):
         return options.get("base_url", URL.BASE_URL + URL.VERSION)
@@ -37,10 +38,21 @@ class Client:
     def request(self, method, path, **options):
         url = f"{self.base_url}{path}"
 
+        cache_key = (method, url, frozenset(options.items()))
+        cached_response = self.cache.get(cache_key)
+        if cached_response:
+            return cached_response
+
         try:
             response = self.session.request(method=method, url=url, **options)
             response.raise_for_status()
-            return response.json()
+
+            json_response = response.json()
+
+            # Store the response in the cache
+            self.cache[cache_key] = json_response
+
+            return json_response
         except requests.exceptions.RequestException as e:
             raise DubverseError(f"Error Authorizing Client: {str(e)}")
 
