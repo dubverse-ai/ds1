@@ -12,7 +12,8 @@ from ds1.exceptions import DubverseError
 class Client:
     DEFAULTS = {"base_url": URL.BASE_URL + URL.VERSION}
 
-    def __init__(self, email, password, **options):
+    def __init__(self, email, password, stage=False, **options):
+        self.stage = stage
         self.email = email
         self.password = password
         self.base_url = self._set_base_url()
@@ -22,7 +23,10 @@ class Client:
         self.cache = TTLCache(maxsize=1, ttl=86400)  # 86400 seconds = 1 day
 
     def _set_base_url(self, **options):
-        return options.get("base_url", URL.BASE_URL + URL.VERSION)
+        if self.stage:
+            return options.get("base_url", URL.STAGE_URL + URL.VERSION)
+        else:
+            return options.get("base_url", URL.BASE_URL + URL.VERSION)
 
     def _get_headers_for_request(self):
         return {
