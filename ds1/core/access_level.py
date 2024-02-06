@@ -7,5 +7,3 @@ class Accesslevel(Resource):
         super().__init__(client=client)
         self.name = "Dubverse AccessLevel"
         self.base_url = URL.ADMIN_PREFIX + URL.ACCESSLEVEL_URL
-    
-
