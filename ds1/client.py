@@ -40,12 +40,12 @@ class Client:
         s.headers.update(self._get_headers_for_request())
         return s
 
-    def generate_cache_key(self,method, path, **options):
+    def generate_cache_key(self, method, path, **options):
         # Create a tuple with the method, path, and options
         cache_key_tuple = (method, path, tuple(sorted(options.items())))
 
         # Serialize the tuple to JSON and hash it
-        cache_key_json = json.dumps(cache_key_tuple, sort_keys=True).encode('utf-8')
+        cache_key_json = json.dumps(cache_key_tuple, sort_keys=True).encode("utf-8")
         cache_key = hashlib.sha256(cache_key_json).hexdigest()
 
         return cache_key
@@ -53,12 +53,11 @@ class Client:
     def request(self, method, path, **options):
         url = f"{self.base_url}{path}"
 
-        cache_key = self.generate_cache_key(method,path, **options)
+        cache_key = self.generate_cache_key(method, path, **options)
         print(cache_key)
         cached_response = self.cache.get(cache_key)
         if cached_response:
             return cached_response
-        return
 
         try:
             response = self.session.request(method=method, url=url, **options)
