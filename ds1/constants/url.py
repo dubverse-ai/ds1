@@ -1,6 +1,6 @@
 class URL(object):
     BASE_URL = "https://api3.dubverse.ai"
-    STAGE_URL = "https://poopy.dubverse.ai"
+    # STAGE_URL = "https://poopy.dubverse.ai"
     ADMIN_PREFIX = "/red"
     VERSION = "/api/v3"
     USER_URL = "/user"

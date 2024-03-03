@@ -6,10 +6,10 @@ from ds1.exceptions import DubverseError
 
 
 class Auth:
-    def __init__(self, stage=False):
+    def __init__(self, core_url=None):
         self.name = "AuthClient"
-        if stage:
-            self.base_url = URL.STAGE_URL + URL.VERSION
+        if core_url:
+            self.base_url = core_url + URL.VERSION
         else:
             self.base_url = URL.BASE_URL + URL.VERSION
         self.cache = TTLCache(maxsize=1, ttl=86400)  # 86400 seconds = 1 day

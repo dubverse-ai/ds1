@@ -13,19 +13,19 @@ from ds1.exceptions import DubverseError
 class Client:
     DEFAULTS = {"base_url": URL.BASE_URL + URL.VERSION}
 
-    def __init__(self, email, password, stage=False, **options):
-        self.stage = stage
+    def __init__(self, email, password, core_url=None, **options):
+        self.core_url = core_url
         self.email = email
         self.password = password
         self.base_url = self._set_base_url()
-        self.auth_token = Auth(stage=stage).get_auth_token(email, password)
+        self.auth_token = Auth(core_url=core_url).get_auth_token(email, password)
         self.session = self._get_session()
         self.user = User(client=self)
         self.cache = TTLCache(maxsize=1, ttl=86400)  # 86400 seconds = 1 day
 
     def _set_base_url(self, **options):
-        if self.stage:
-            return options.get("base_url", URL.STAGE_URL + URL.VERSION)
+        if self.core_url:
+            return options.get("base_url", self.core_url + URL.VERSION)
         else:
             return options.get("base_url", URL.BASE_URL + URL.VERSION)
 
