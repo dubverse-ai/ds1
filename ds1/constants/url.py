@@ -10,3 +10,4 @@ class URL(object):
     METADATA_URL = "/metadata"
     ACCESSLEVEL_URL = "/accesslevel"
     AUTH_URL = "/auth/login"
+    TTS_VERSION = "/api/services/v1/tts"
