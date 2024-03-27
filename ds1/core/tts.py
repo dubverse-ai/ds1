@@ -13,10 +13,15 @@ class TTS(Resource):
             res = self.get_url(self.base_url + URL.TTS_PRICING + f"/{speaker_type}")
         else:
             res = self.get_url(self.base_url + URL.TTS_PRICING)
-        return res.json()
+        return res
 
     def create_billing(self, user_id):
-        res = self.all(params={"user": f"{user_id}"})
+        res = self.post_url(
+            self.base_url + URL.TTS_CREATE_BILLING,
+            data={
+                "user_id": user_id,
+            },
+        )
 
         if len(res) == 1:
             return res[0]

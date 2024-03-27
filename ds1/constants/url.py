@@ -12,3 +12,4 @@ class URL(object):
     AUTH_URL = "/auth/login"
     TTS_SERVICE = "/services/tts"
     TTS_PRICING = "/pricing"
+    TTS_CREATE_BILLING = "/billing/create"
