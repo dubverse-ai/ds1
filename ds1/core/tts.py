@@ -6,7 +6,14 @@ class TTS(Resource):
     def __init__(self, client):
         super().__init__(client=client)
         self.name = "Dubverse TTS Service Billing"
-        self.base_url = URL.ADMIN_PREFIX + URL.METADATA_URL
+        self.base_url = URL.TTS_SERVICE
+
+    def get_pricing(self, speaker_type=None):
+        if speaker_type:
+            res = self.get_url(self.base_url + URL.TTS_PRICING + f"/{speaker_type}")
+        else:
+            res = self.get_url(self.base_url + URL.TTS_PRICING)
+        return res.json()
 
     def create_billing(self, user_id):
         res = self.all(params={"user": f"{user_id}"})
