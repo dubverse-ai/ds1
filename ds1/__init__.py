@@ -6,6 +6,7 @@ from ds1.core.auth import Auth
 from ds1.core.plan import Plan
 from ds1.core.access_level import Accesslevel
 from ds1.core.metadata import Metadata
+from ds1.core.tts import TTS
 
 __all__ = [
     "Client",
@@ -16,4 +17,5 @@ __all__ = [
     "Plan",
     "Accesslevel",
     "Metadata",
+    "TTS",
 ]
