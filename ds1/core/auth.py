@@ -43,3 +43,21 @@ class Auth:
             return response.json().get("token")
         except requests.exceptions.RequestException as e:
             raise DubverseError(f"Error Authorizing Client: {str(e)}")
+
+    def verify_api(self, api_key):
+        cached_response = self.cache.get(api_key)
+        if cached_response:
+            return cached_response
+
+        url = self.base_url + URL.AUTH_URL
+        payload = {"api_key": api_key}
+
+        try:
+            response = requests.post(url, json=payload)
+            response.raise_for_status()
+            response_json = response.json()
+            self.cache[api_key] = response_json
+
+            return response_json
+        except requests.exceptions.RequestException as e:
+            raise DubverseError(f"Error Authorizing Client: {str(e)}")
