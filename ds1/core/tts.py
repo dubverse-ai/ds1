@@ -15,11 +15,22 @@ class TTS(Resource):
             res = self.get_url(self.base_url + URL.TTS_PRICING)
         return res
 
-    def create_billing(self, user_id):
+    def create_billing(
+        self,
+        user_id,
+        total_cost,
+        currency,
+        usage_characters=0,
+        usage_duration=0,
+    ):
         res = self.post_url(
             self.base_url + URL.TTS_CREATE_BILLING,
             data={
                 "user_id": user_id,
+                "total_cost": total_cost,
+                "currency": currency,
+                "usage_characters": usage_characters,
+                "usage_duration": usage_duration,
             },
         )
 
