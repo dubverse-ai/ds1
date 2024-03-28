@@ -49,7 +49,7 @@ class Auth:
         if cached_response:
             return cached_response
 
-        url = self.base_url + URL.AUTH_URL
+        url = self.base_url + URL.TTS_SERVICE + URL.TTS_VERIFY_KEY
         payload = {"api_key": api_key}
 
         try:

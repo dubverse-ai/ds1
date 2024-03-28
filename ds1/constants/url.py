@@ -13,3 +13,4 @@ class URL(object):
     TTS_SERVICE = "/services/tts"
     TTS_PRICING = "/pricing"
     TTS_CREATE_BILLING = "/billing/create"
+    TTS_VERIFY_KEY = "/keys/verify"
