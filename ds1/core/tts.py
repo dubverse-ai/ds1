@@ -23,7 +23,4 @@ class TTS(Resource):
             },
         )
 
-        if len(res) == 1:
-            return res[0]
-        else:
-            raise Exception(f"Error Fetching {self.name} for User: {user_id}")
+        return res
