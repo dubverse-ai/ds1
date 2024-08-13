@@ -3,6 +3,8 @@ import json
 
 import requests
 from cachetools import TTLCache
+from requests.adapters import HTTPAdapter
+from requests.packages.urllib3.util.retry import Retry
 
 from ds1.constants.url import URL
 from ds1.core.auth import Auth
@@ -37,13 +39,17 @@ class Client:
 
     def _get_session(self):
         s = requests.Session()
+        retries = Retry(
+            total=3, backoff_factor=0.1, status_forcelist=[500, 502, 503, 504]
+        )
+        s.mount("http://", HTTPAdapter(max_retries=retries))
+        s.mount("https://", HTTPAdapter(max_retries=retries))
         s.headers.update(self._get_headers_for_request())
         return s
 
     def generate_cache_key(self, method, path, **options):
         # Create a tuple with the method, path, and options
         cache_key_tuple = (method, path, tuple(sorted(options.items())))
-
         # Serialize the tuple to JSON and hash it
         cache_key_json = json.dumps(cache_key_tuple, sort_keys=True).encode("utf-8")
         cache_key = hashlib.sha256(cache_key_json).hexdigest()
@@ -54,7 +60,6 @@ class Client:
         url = f"{self.base_url}{path}"
 
         cache_key = self.generate_cache_key(method, path, **options)
-        print(cache_key)
         cached_response = self.cache.get(cache_key)
         if cached_response:
             return cached_response
@@ -70,7 +75,20 @@ class Client:
 
             return json_response
         except requests.exceptions.RequestException as e:
-            raise DubverseError(f"Error Authorizing Client: {str(e)}")
+            if isinstance(e, requests.exceptions.ConnectionError):
+                raise DubverseError(
+                    f"Connection Error: {str(e)}. Please check your network connection and try again."
+                )
+            elif isinstance(e, requests.exceptions.Timeout):
+                raise DubverseError(
+                    f"Request Timeout: {str(e)}. The server is taking too long to respond."
+                )
+            elif isinstance(e, requests.exceptions.HTTPError):
+                raise DubverseError(
+                    f"HTTP Error: {str(e)}. Status code: {e.response.status_code}"
+                )
+            else:
+                raise DubverseError(f"Error Authorizing Client: {str(e)}")
 
     def get(self, path, params=None, **options):
         return self.request("get", path, params=params, **options)
