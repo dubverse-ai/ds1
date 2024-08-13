@@ -2,6 +2,7 @@
 __pycache__
 dist
 build
+*.egg-info/
 
 
 # Common virtualenv names
