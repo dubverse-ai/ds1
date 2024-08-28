@@ -12,7 +12,7 @@ class Auth:
             self.base_url = core_url + URL.VERSION
         else:
             self.base_url = URL.BASE_URL + URL.VERSION
-        self.cache = TTLCache(maxsize=1, ttl=86400)  # 86400 seconds = 1 day
+        self.cache = TTLCache(maxsize=1, ttl=300)  # 300 seconds = 5 minutes
 
     def verify_token(self, token):
         cached_response = self.cache.get(token)
@@ -45,6 +45,10 @@ class Auth:
             raise DubverseError(f"Error Authorizing Client: {str(e)}")
 
     def verify_api(self, api_key):
+        cached_response = self.cache.get(api_key)
+        if cached_response:
+            return cached_response
+
         url = self.base_url + URL.TTS_SERVICE + URL.TTS_VERIFY_KEY
         payload = {"api_key": api_key}
 
@@ -52,6 +56,7 @@ class Auth:
             response = requests.post(url, json=payload)
             response.raise_for_status()
             response_json = response.json()
+            self.cache[api_key] = response_json
 
             return response_json
         except requests.exceptions.RequestException as e:
