@@ -6,7 +6,7 @@ class Cohorts(Resource):
     def __init__(self, client):
         super().__init__(client=client)
         self.name = "Dubverse Cohorts"
-        self.base_url = URL.ADMIN_PREFIX + URL.COHORTS_URL
+        self.base_url = URL.COHORTS_URL
 
     def list(self, cohort_name=None):
         """List all cohorts, optionally filtered by name"""
