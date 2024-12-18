@@ -1,8 +1,8 @@
 from setuptools import find_packages, setup
 
 install_requires = [
-    "requests>=2.0",
-    "cachetools",
+    "requests>=2.25.0",
+    "cachetools>=4.2.0",
 ]
 
 extras_require = {
@@ -11,7 +11,7 @@ extras_require = {
 
 setup(
     name="ds1",
-    version="0.1.21",
+    version="0.1.22",
     author="dubverse",
     description="Dubverse SDK for Python",
     packages=find_packages(),  # Automatically discover and include all packages

@@ -1,12 +1,14 @@
 from ds1.client import Client
-from ds1.core.user import User
-from ds1.core.subscription import Subscription
-from ds1.core.config import Config
-from ds1.core.auth import Auth
-from ds1.core.plan import Plan
 from ds1.core.access_level import Accesslevel
+from ds1.core.auth import Auth
+from ds1.core.cohorts import (CohortError, CohortNotFoundError,
+                              InvalidParameterError, UserNotFoundError)
+from ds1.core.config import Config
 from ds1.core.metadata import Metadata
+from ds1.core.plan import Plan
+from ds1.core.subscription import Subscription
 from ds1.core.tts import TTS
+from ds1.core.user import User
 
 __all__ = [
     "Client",
@@ -18,4 +20,8 @@ __all__ = [
     "Accesslevel",
     "Metadata",
     "TTS",
+    "CohortError",
+    "CohortNotFoundError",
+    "UserNotFoundError",
+    "InvalidParameterError",
 ]

@@ -8,6 +8,7 @@ class URL(object):
     CONFIG_URL = "/config"
     PLAN_URL = "/plan"
     METADATA_URL = "/metadata"
+    COHORTS_URL = "/cohorts"
     ACCESSLEVEL_URL = "/accesslevel"
     AUTH_URL = "/auth/login"
     TTS_SERVICE = "/services/tts"
