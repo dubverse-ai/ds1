@@ -1,8 +1,7 @@
 from ds1.client import Client
 from ds1.core.access_level import Accesslevel
 from ds1.core.auth import Auth
-from ds1.core.cohorts import (CohortError, CohortNotFoundError,
-                              InvalidParameterError, UserNotFoundError)
+from ds1.core.cohorts import Cohorts
 from ds1.core.config import Config
 from ds1.core.metadata import Metadata
 from ds1.core.plan import Plan
@@ -20,8 +19,5 @@ __all__ = [
     "Accesslevel",
     "Metadata",
     "TTS",
-    "CohortError",
-    "CohortNotFoundError",
-    "UserNotFoundError",
-    "InvalidParameterError",
+    "Cohorts",
 ]
