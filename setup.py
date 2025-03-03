@@ -11,7 +11,7 @@ extras_require = {
 
 setup(
     name="ds1",
-    version="0.1.26",
+    version="0.1.27",
     author="dubverse",
     description="Dubverse SDK for Python",
     packages=find_packages(),  # Automatically discover and include all packages

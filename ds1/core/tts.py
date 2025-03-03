@@ -69,13 +69,12 @@ class TTS(Resource):
         except Exception as e:
             raise TTSPricingError(f"Unexpected error while fetching pricing: {str(e)}")
 
-    def create_billing(self, user_id, usage_logs):
+    def create_billing(self, user_id):
         """
         Create billing entry for TTS usage.
 
         Args:
             user_id (str): ID of the user
-            usage_logs (list): List of usage logs for billing
 
         Returns:
             dict: Billing creation response
@@ -88,13 +87,11 @@ class TTS(Resource):
         """
         if not user_id:
             raise ValueError("user_id cannot be empty")
-        if not usage_logs or not isinstance(usage_logs, list):
-            raise ValueError("usage_logs must be a non-empty list")
 
         try:
             res = self.post_url(
                 self.base_url + URL.TTS_CREATE_BILLING,
-                data={"user_id": user_id, "usage_logs": usage_logs},
+                data={"user_id": user_id},
                 timeout=300,  # 5 minute timeout for billing operations
             )
             return res
